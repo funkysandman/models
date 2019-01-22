@@ -147,7 +147,7 @@ class KerasMultiResolutionFeatureMaps(tf.keras.Model):
     for index, from_layer in enumerate(feature_map_layout['from_layer']):
       net = []
       layer_depth = feature_map_layout['layer_depth'][index]
-      conv_kernel_size = 1 # 3 
+      conv_kernel_size = 3 
       if 'conv_kernel_size' in feature_map_layout:
         conv_kernel_size = feature_map_layout['conv_kernel_size'][index]
       if from_layer:
@@ -171,8 +171,8 @@ class KerasMultiResolutionFeatureMaps(tf.keras.Model):
                   name=layer_name))
 
         layer_name = '{}_2_Conv2d_{}_{}x{}_s2_{}'.format(
-            #base_from_layer, index, conv_kernel_size, conv_kernel_size,
-            base_from_layer, index, 3, 3,
+            base_from_layer, index, conv_kernel_size, conv_kernel_size,
+            #base_from_layer, index, 3, 3,
             depth_fn(layer_depth))
         stride = 2
         padding = 'SAME'
